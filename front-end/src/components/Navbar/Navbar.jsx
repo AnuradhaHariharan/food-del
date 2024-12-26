@@ -34,12 +34,12 @@ const Navbar = ({ setShowLogin, setSearchQuery }) => {
             className="search-bar"
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <a href="#explore-menu"><img 
+          <a href=""></a>
+          <img 
             src={assets.search_icon} 
             alt="search" 
             className="search-icon" 
-          /></a>
-          
+          />
         </div>
         <div className="navbar-cart">
           <Link to='/cart'>
