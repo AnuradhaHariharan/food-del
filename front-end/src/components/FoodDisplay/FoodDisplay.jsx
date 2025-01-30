@@ -1,7 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import './FoodDisplay.css';
 import { StoreContext } from '../../context/StoreContext';
 import FoodItem from '../FoodItem/FoodItem';
+import { ShimmerPostList } from "react-shimmer-effects";
 
 const FoodDisplay = ({ category, searchQuery }) => {
   const [currentCategory, setCategory] = useState("dishes");
@@ -30,24 +31,26 @@ const FoodDisplay = ({ category, searchQuery }) => {
 
   return (
     <div className='food-display' id='food-display'>
-      <h2>{`Top ${currentCategory === 'All' ? 'Dishes' : currentCategory} near you`}</h2>
+   <h2 style={{ marginBottom: '30px' }}>
+  {`Top ${currentCategory === 'All' ? 'Dishes' : currentCategory} near you`}</h2>
+    {filteredFoods.length > 0 ? (
       <div className="food-display-list">
-        {filteredFoods.length > 0 ? (
-          filteredFoods.map((item, index) => (
-            <FoodItem
-              key={index}
-              id={item._id}
-              name={item.name}
-              description={item.description}
-              price={item.price}
-              image={item.image}
-            />
-          ))
-        ) : (
-          <p>No items available.</p>
-        )}
+        {filteredFoods.map((item, index) => (
+          <FoodItem
+            key={index}
+            id={item._id}
+            name={item.name}
+            description={item.description}
+            price={item.price}
+            image={item.image}
+          />
+        ))}
       </div>
-    </div>
+    ) : (
+      <ShimmerPostList postStyle="STYLE_FOUR" col={4} row={4} gap={30} />
+    )}
+  </div>
+  
   );
 };
 
